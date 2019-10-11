@@ -106,31 +106,31 @@ resource "azurerm_virtual_machine_extension" "DependencyAgentWindows" {
   settings                   = ""
 }
 
-resource "azurerm_virtual_machine_extension" "JoinDomain" {
-  name                       = "JoinDomain"
-  location                   = "${var.location}"
-  resource_group_name        = "${var.resource_group_name}"
-  virtual_machine_name       = "${element(azurerm_virtual_machine.vm.*.name, count.index)}"
-  publisher                  = "Microsoft.Compute"
-  type                       = "JsonADDomainExtension"
-  type_handler_version       = "1.3"
-  auto_upgrade_minor_version = true
-  count                      = "${var.extensions_enabled ? var.vm_count : 0}"
-  depends_on                 = ["azurerm_virtual_machine_extension.DependencyAgentWindows", "azurerm_virtual_machine_extension.NetworkWatcher"]
+#resource "azurerm_virtual_machine_extension" "JoinDomain" {
+ # name                       = "JoinDomain"
+  #location                   = "${var.location}"
+  #resource_group_name        = "${var.resource_group_name}"
+  #virtual_machine_name       = "${element(azurerm_virtual_machine.vm.*.name, count.index)}"
+  #publisher                  = "Microsoft.Compute"
+  #type                       = "JsonADDomainExtension"
+  #type_handler_version       = "1.3"
+  #auto_upgrade_minor_version = true
+  #count                      = "${var.extensions_enabled ? var.vm_count : 0}"
+  #depends_on                 = ["azurerm_virtual_machine_extension.DependencyAgentWindows", "azurerm_virtual_machine_extension.NetworkWatcher"]
 
-  settings = <<BASE_SETTINGS
-{
- "Name": "${var.ad_domain}",
- "User": "${var.ad_join_username}@${var.ad_domain}",
- "OUPath": "${var.ad_ou_path}",
- "Restart": "true",
- "Options": "3"
-}
-BASE_SETTINGS
+  #settings = <<BASE_SETTINGS
+#{
+# "Name": "${var.ad_domain}",
+ #"User": "${var.ad_join_username}@${var.ad_domain}",
+ #"OUPath": "${var.ad_ou_path}",
+ #"Restart": "true",
+ #"Options": "3"
+#}
+#BASE_SETTINGS
 
-  protected_settings = <<PROTECTED_SETTINGS
-{
- "Password": "${var.ad_join_password}"
-}
-PROTECTED_SETTINGS
-}
+  #protected_settings = <<PROTECTED_SETTINGS
+#{
+ #"Password": "${var.ad_join_password}"
+#}
+#PROTECTED_SETTINGS
+#}

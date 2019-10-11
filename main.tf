@@ -37,7 +37,7 @@ resource "azurerm_virtual_machine" "vm" {
   location                         = "${var.location}"
   resource_group_name              = "${var.resource_group_name}"
   network_interface_ids            = ["${element(azurerm_network_interface.nic.*.id, count.index)}"]
-  availability_set_id              = "${azurerm_availability_set.avset.id, count.index}"
+  availability_set_id              = "${azurerm_availability_set.avset.id, count.index)}"
   vm_size                          = "${var.vm_size}"
   license_type                     = "Windows_Server"
   delete_os_disk_on_termination    = true

@@ -15,22 +15,22 @@ variable "resource_group_name" {
   description = "Resource Group Name"
 }
 
-variable "ad_domain" {
-  description = "The Active Directory Domain to join."
-}
+ #variable "ad_domain" {
+#  description = "The Active Directory Domain to join."
+#}
 
-variable "ad_join_username" {
-  description = "AD Join Account"
-}
+#variable "ad_join_username" {
+ # description = "AD Join Account"
+#}
 
-variable "ad_join_password" {
-  description = "AD Join Password"
-}
-
-variable "ad_ou_path" {
-  description = "The AD OU Path to place the VMs into."
-}
-
+#variable "ad_join_password" {
+ # description = "AD Join Password"
+#}
+#
+#variable "ad_ou_path" {
+ # description = "The AD OU Path to place the VMs into."
+#}
+#
 variable "application_gateway_backend_address_pool_id" {
   description = "AppGW Backend Address Pool ID"
   default     = ""

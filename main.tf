@@ -2,9 +2,9 @@ resource "azurerm_availability_set" "avset" {
   name                         = "${var.name}01"
   location                     = "${var.location}"
   resource_group_name          = "${var.resource_group_name}"
-  count                        = "${var.vm_count > 0 ? 1 : 0}"
-  platform_fault_domain_count  = 3
-  platform_update_domain_count = 5
+  #count                        = "${var.vm_count > 0 ? 1 : 0}"
+  #platform_fault_domain_count  = 3
+  #platform_update_domain_count = 5
   managed                      = true
   tags                         = "${var.tags}"
 }
@@ -37,7 +37,7 @@ resource "azurerm_virtual_machine" "vm" {
   location                         = "${var.location}"
   resource_group_name              = "${var.resource_group_name}"
   network_interface_ids            = ["${element(azurerm_network_interface.nic.*.id, count.index)}"]
-  availability_set_id              = "${azurerm_availability_set.avset.id, count.index)}"
+  availability_set_id              = "${azurerm_availability_set.avset.id,}"
   vm_size                          = "${var.vm_size}"
   license_type                     = "Windows_Server"
   delete_os_disk_on_termination    = true

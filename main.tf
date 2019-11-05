@@ -44,7 +44,7 @@ resource "azurerm_virtual_machine" "vm" {
   delete_data_disks_on_termination = true
 
   boot_diagnostics {
-    enabled     = "true"
+    enabled     = "false"
     storage_uri = "${var.storage_uri}"
   }
 

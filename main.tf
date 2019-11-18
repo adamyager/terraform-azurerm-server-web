@@ -36,7 +36,7 @@ resource "azurerm_virtual_machine" "vm" {
   name                             = "${var.name}${format("%02d", count.index+1)}${var.post_count_label}"
   location                         = "${var.location}"
   resource_group_name              = "${var.resource_group_name}"
-  network_interface_ids            = ["${element(azurerm_network_interface.nic.*.id, count.index)}"]
+  network_interface_ids            = [“${element(azurerm_network_interface.nic[*].id, count.index)}“]
   availability_set_id              = "${azurerm_availability_set.avset.id}"
   vm_size                          = "${var.vm_size}"
   license_type                     = "Windows_Server"
